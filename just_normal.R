@@ -5,7 +5,7 @@ set.seed(5)
 n <- 200
 
 # Number of datasets to simulate
-num_datasets <- 10000  # You can adjust this number as needed
+num_datasets <- 10000  
 
 # Initialize vectors to store p-values and decisions
 p_values_no_modification <- numeric(num_datasets)
