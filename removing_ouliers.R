@@ -1,5 +1,5 @@
 # Set seed for reproducibility
-set.seed(500)
+set.seed(5)
 
 # Sample size
 n <- 200
