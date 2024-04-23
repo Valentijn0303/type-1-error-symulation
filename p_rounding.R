@@ -24,18 +24,18 @@ for (i in 1:num_datasets) {
   # Perform t-test
   t_test_result <- t.test(gpa_coffee, gpa_no_coffee)
   
-  # Apply QRP: Round p-values down (only if greater than 0.05)
-  rounded_p_value <- ifelse(t_test_result$p.value > 0.05, 0.05, t_test_result$p.value)
-  
+  # Apply QRP: Round p-values down (only if less than or equal to 0.056)
+  rounded_p_value <- ifelse(t_test_result$p.value <= 0.059, 0.05, t_test_result$p.value)
+    
   # Store rounded p-value and decision
   p_values_rounded[i] <- rounded_p_value
-  decisions_rounded[i] <- ifelse(rounded_p_value < 0.05, "Reject H0", "Fail to reject H0")
+  decisions_rounded[i] <- ifelse(rounded_p_value <= 0.05, "Reject H0", "Fail to reject H0")
   
   # Store unrounded p-value and decision
   p_values_no_modification[i] <- t_test_result$p.value
-  decisions_no_modification[i] <- ifelse(t_test_result$p.value < 0.05, "Reject H0", "Fail to reject H0")
+  decisions_no_modification[i] <- ifelse(t_test_result$p.value <= 0.05, "Reject H0", "Fail to reject H0")
 }
 
 # Display summary of results
-cat("Type 1 error rate (rounded p-values):", mean(p_values_rounded < 0.05), "\n")
-cat("Type 1 error rate (unrounded p-values):", mean(p_values_no_modification < 0.05), "\n")
+cat("Type 1 error rate (rounded p-values):", mean(p_values_rounded <= 0.05), "\n")
+cat("Type 1 error rate (unrounded p-values):", mean(p_values_no_modification <= 0.05), "\n")
