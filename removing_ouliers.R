@@ -51,4 +51,18 @@ for (i in 1:num_datasets) {
 # Display summary of results
 cat("Type 1 error rate (outlier removal):", mean(p_values_outliers < 0.05), "\n")
 cat("Type 1 error rate (no modification):", mean(p_values_no_modification < 0.05), "\n")
+cat(table(decisions_outliers), "\n")
+cat(table(decisions_no_modification), "\n")
 
+# Create a histogram of the p-values without modification
+hist(p_values_no_modification, breaks = 50, col = rgb(0, 0, 1, 0.5), 
+     main = "Distribution of p-values", xlab = "P-value", 
+     xlim = c(0, 1), ylim = c(0, max(hist(p_values_no_modification, plot = FALSE)$counts, 
+                                      hist(p_values_outliers, plot = FALSE)$counts)))
+
+# Add a histogram of the p-values with outlier removal
+hist(p_values_outliers, breaks = 50, col = rgb(1, 0, 0, 0.5), add = TRUE)
+
+# Add a legend
+legend("topright", legend = c("No modification", "Outlier removal"), 
+       fill = c(rgb(0, 0, 1, 0.5), rgb(1, 0, 0, 0.5)))

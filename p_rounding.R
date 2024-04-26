@@ -39,3 +39,20 @@ for (i in 1:num_datasets) {
 # Display summary of results
 cat("Type 1 error rate (rounded p-values):", mean(p_values_rounded <= 0.05), "\n")
 cat("Type 1 error rate (unrounded p-values):", mean(p_values_no_modification <= 0.05), "\n")
+cat(table(decisions_rounded), "\n")
+cat(table(decisions_no_modification), "\n")
+cat(sum(decisions_no_modification == "Reject H0"), "\n")
+cat(sum(decisions_no_modification == "Fail to reject H0"), "\n")
+
+# Create a histogram of the p-values without modification
+hist(p_values_no_modification, breaks = 50, col = rgb(0, 0, 1, 0.5), 
+     main = "Distribution of p-values", xlab = "P-value", 
+     xlim = c(0, 1), ylim = c(0, max(hist(p_values_no_modification, plot = FALSE)$counts, 
+                                      hist(p_values_rounded, plot = FALSE)$counts)))
+
+# Add a histogram of the p-values with outlier removal
+hist(p_values_outliers, breaks = 50, col = rgb(1, 0, 0, 0.5), add = TRUE)
+
+# Add a legend
+legend("topright", legend = c("No modification", "P rounding"), 
+       fill = c(rgb(0, 0, 1, 0.5), rgb(1, 0, 0, 0.5)))
