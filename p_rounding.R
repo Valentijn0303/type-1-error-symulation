@@ -1,5 +1,5 @@
 # Set seed for reproducibility
-set.seed(5)
+set.seed(40)
 
 # Sample size
 n <- 200
@@ -24,7 +24,7 @@ for (i in 1:num_datasets) {
   # Perform t-test
   t_test_result <- t.test(gpa_coffee, gpa_no_coffee)
   
-  # Apply QRP: Round p-values down (only if less than or equal to 0.056)
+  # Apply QRP: Round p-values down (only if less than or equal to 0.059)
   rounded_p_value <- ifelse(t_test_result$p.value <= 0.059, 0.05, t_test_result$p.value)
     
   # Store rounded p-value and decision
