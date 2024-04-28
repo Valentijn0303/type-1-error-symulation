@@ -2,7 +2,7 @@
 set.seed(40)
 
 # Sample size
-n <- 200
+n <- 500
 
 # Number of datasets to simulate
 num_datasets <- 10000  

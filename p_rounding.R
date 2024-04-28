@@ -2,7 +2,7 @@
 set.seed(40)
 
 # Sample size
-n <- 200
+n <- 500
 
 # Number of datasets to simulate
 num_datasets <- 10000  
@@ -51,7 +51,7 @@ hist(p_values_no_modification, breaks = 50, col = rgb(0, 0, 1, 0.5),
                                       hist(p_values_rounded, plot = FALSE)$counts)))
 
 # Add a histogram of the p-values with outlier removal
-hist(p_values_outliers, breaks = 50, col = rgb(1, 0, 0, 0.5), add = TRUE)
+hist(p_values_rounded, breaks = 50, col = rgb(1, 0, 0, 0.5), add = TRUE)
 
 # Add a legend
 legend("topright", legend = c("No modification", "P rounding"), 
